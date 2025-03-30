@@ -1,0 +1,59 @@
+Leo, (lrjfbdbss)
+
+minimalist application. 
+1 client plays against server (house)
+API: 
+3 commands
+start game (reset)  G
+hit                 H
+stand               S
+
+
+
+game status:
+- game running             R
+- player lost, house won   L
+- house lost, player won   W
+- Illegal request	         I
+
+
+On all 3 commands there will be a reply of the same format:
+
+Game Status (R,L,W), Player Score (number), House Score (number (almost always 0))
+
+
+Example: 
+Command    Reply
+G          (R,0,0)
+H          (R,8,0)
+H          (R,17,0)
+
+H	   (L,22,0)
+OR
+S          (W,17,25)     or       S (L,17,20) 
+	  
+
+If client sends H or S while game is NOT running, reply with (I, 0, 0)
+
+
+On G(start game) Server sets playerScore to 0
+
+
+on start, game server will reset the score
+on hit, server will:
+score under or equal to 21
+- if yes, draw card, add to score, check the score, define game status, reply
+- if greater than 21, reply: game status (bust)
+game over  
+
+
+
+
+
+Status, PLayer Score, House Score         - needed for universal API
+
+
+One person does server, one person does client
+
+
+
